@@ -1,26 +1,31 @@
-
-<div *ngIf="professorSelecionado">
-  <div class ="row">
-    <div class= "me-auto ">
-      <app-titulo [titulo]="'Professor:' + professorSelecionado.id"></app-titulo>
+<div class="row">
+  <div  class = "col-sm-6" *ngIf="professorSelecionado">
+    <div class ="row">
+      <div class=  "me-auto">
+        <app-titulo [titulo]="'Cód: professor:' + professorSelecionado.id"></app-titulo>
+      </div>
+      <div class="mt-1 ">
+        <button class="btn btn-outline-danger" (click) = "voltar()">
+          Fechar</button>
+      </div>
     </div>
-    <div class="col-sm-6">
-      <button class="btn btn-warning" (click) = "voltar()">lista de professores</button>
-    </div>
-  </div>
 
  
- <form>
-  <div class="form-group">
-    <label for="formGroupExampleInput">Nome</label>
-    <input type="text" value ="{{professorSelecionado.nome}}" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
-  </div>
-  <div class="form-group">
-    <label for="formGroupExampleInput2">Disciplina</label>
-    <input type="text" value ="{{professorSelecionado.disciplina}}" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
-  </div>
- 
-</form>
+
+    <form [formGroup] ="professorForm" (submit)="professorSubmit">
+      <div class="form-group">
+        <label for="formGroupExampleInput">Nome</label>
+        <input type="text" formControlName ='nome' class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Disciplina</label>
+        <input type="text" formControlName ='sobrenome' class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+      </div>
+        <hr>
+        <button class="btn btn-success" [disabled] ="!professorForm.valid">Enviar</button>
+      </form>
+      </div>
+    
 </div>
 
 <div *ngIf="!professorSelecionado">
